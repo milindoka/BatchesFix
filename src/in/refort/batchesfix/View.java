@@ -13,35 +13,21 @@ public class View {
     private JPanel topPanel;
     private JPanel btnPanel;
     private JScrollPane scrollPane;
-    
+    private FixedColumnTable fct;
     public View(String text){
         frame = new JFrame("View");                                    
         frame.getContentPane().setLayout(new BorderLayout());                                          
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);           
-        frame.setSize(200,200);
+        frame.setSize(400,200);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
         
-        
-
-        //headers for the table
-        String[] columns = new String[] {
-            "Id", "Name", "Hourly Rate", "Part Time"
-        };
-         
-        //actual data for the table in a 2d array
-        Object[][] data = new Object[][] {
-            {1, "John", 40.0, false },
-            {2, "Rambo", 70.0, false },
-            {3, "Zorro", 60.0, true },
-        };
- 
-        //create table with data
-        table = new JTable(data, columns);
-         
-        //add the table to the frame
-      //  frame.getContentPane().add(new JScrollPane(table),BorderLayout.SOUTH);
-        
+        JTable table = new JTable(10, 90);
+        table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        table.getColumnModel().getColumn(0).setPreferredWidth(50);
+        table.getColumnModel().getColumn(1).setPreferredWidth(100);
+        JScrollPane scrollPane= new JScrollPane( table );
+        fct = new FixedColumnTable(2, scrollPane);        
         
 
         topPanel = new JPanel();
@@ -56,8 +42,11 @@ public class View {
         frame.getContentPane().add(btnPanel);
        
       //  frame.getContentPane().add(label);
-        scrollPane = new JScrollPane(table);
-         
+        //''scrollPane = new JScrollPane(table);
+        //fct=new FixedColumnTable(1,scrollPane);
+        
+        
+        
         topPanel.add(scrollPane,BorderLayout.CENTER);
         JButton addButton = new JButton("ADD");
         JButton delButton = new JButton("DELETE");
