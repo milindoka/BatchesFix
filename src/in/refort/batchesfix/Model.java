@@ -9,9 +9,6 @@ public class Model
     private HashSet <String> hs = new HashSet <String>();
     private HashSet <String> ts = new HashSet <String>();
 
-
-    
-    
     public Model(){
         x = 0;
     }
